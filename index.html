@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lectomania - Móvil</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" type="text/css" href="estilos.css">
+</head>
+<body>
+    <div class="wrapper">
+        <nav>
+            <div class="logo"><a href="index.html"><h1>Lectomania</h1></a></div>
+            <button id="menu-toggle" class="menu-toggle"><i class="bi bi-list"></i></button>
+        </nav>
+
+        <div id="mobile-menu" class="mobile-menu">
+            <div class="searchbox">
+                <input type="search" id="searchInput" placeholder="¿Que estás buscando?">
+                <button class="boton-buscador" onclick="buscarLibro()"><i class="bi bi-search"></i></button>
+            </div>
+            <ul>
+                <li><a href="carrito.html"><i class="bi bi-cart"></i> Carrito <span class="carrito-contador"></span></a></li>
+                <li><a href="#"><i class="bi bi-person-circle"></i>Perfil</a></li>
+            </ul>
+        </div>
+
+        <main>
+            <section class="categorias">
+                <h2>Categorías principales</h2>
+                <select id="categoria-select">
+                    <option value="">Selecciona una categoría</option>
+                    <option value="novelas-juveniles">Novelas juveniles</option>
+                    <option value="novelas-infantiles">Novelas infantiles</option>
+                    <option value="novelas">Novelas</option>
+                    <option value="ciencia-economia">Ciencia y economía</option>
+                    <option value="cocina">Cocina</option>
+                    <option value="biografias">Biografías</option>
+                    <option value="deportes">Deportes</option>
+                    <option value="arte-diseno">Arte y diseño</option>
+                    <option value="educacion">Educación</option>
+                    <option value="humanidades">Humanidades</option>
+                    <option value="psicologia">Psicología</option>
+                    <option value="policiales">Policiales</option>
+                    <option value="sagas-combos">Sagas y combos</option>
+                    <option value="comics-mangas">Comics y mangas</option>
+                </select>
+            </section>
+
+            <div class="section nuevos-ingresos">
+                <h2>Nuevos ingresos</h2>
+                <div id="nuevos-ingresos" class="libros-grid">
+                    <!-- Los libros se agregarán aquí dinámicamente -->
+                </div>
+            </div>
+            
+            <div class="section bestsellers">
+                <h2>Bestseller Argentina</h2>
+                <div id="bestsellers" class="libros-grid">
+                    <!-- Los libros se agregarán aquí dinámicamente -->
+                </div>
+            </div>
+
+        </main>
+
+        <footer>
+            <div class="footer-redes">
+                <a href="#"><i class="bi bi-instagram"></i></a>
+                <a href="#"><i class="bi bi-facebook"></i></a>
+                <h2>SEGUINOS</h2>
+            </div>
+            <div class="footer-links">
+                <h4>Más información</h4>
+                <ul>
+                    <li><a href="#">Quienes somos</a></li>
+                    <li><a href="#">Como comprar</a></li>
+                    <li><a href="#">Escribinos</a></li>
+                </ul>
+            </div>
+            <div class="footer-copyright">
+                <h6>Copyright 2024. All Right Reserved</h6>
+            </div>
+        </footer>
+    </div>
+
+    <script src="libros.js"></script>
+    
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Función para crear el elemento de libro
+        function crearElementoLibro(libro) {
+            return `
+                <div class="libro">
+                    <img src="${libro.imagen}" alt="${libro.titulo}" style="width:100%;max-width:121px;height:auto;">
+                    <div class="libro-detalles">
+                        <a href="producto-detalles.html?id=${libro.id}">
+                            <p><strong>${libro.titulo}</strong><br>${libro.autor}<br>$${libro.precio}</p>
+                        </a>
+                    </div>
+                </div>
+            `;
+        }
+    
+        // Cargar nuevos ingresos
+        const nuevosIngresos = document.getElementById('nuevos-ingresos');
+        todosLosLibros.slice(0, 4).forEach(libro => {
+            nuevosIngresos.innerHTML += crearElementoLibro(libro);
+        });
+    
+        // Cargar bestsellers
+        const bestsellers = document.getElementById('bestsellers');
+        todosLosLibros.slice(4, 8).forEach(libro => {
+            bestsellers.innerHTML += crearElementoLibro(libro);
+        });
+    });
+    </script>
+
+</body>
+</html>
