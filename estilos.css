@@ -120,7 +120,24 @@ nav {
     padding: 10px;
     margin-top: 10px;
 }
-
+.seccion-titulo{
+    margin-top: 20px;
+    background-color: var(--color-naranja);
+    padding: 10px 15px;
+    border-radius: 5px;
+    display: inline-block;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.seccion-titulo1{
+    margin-top: 20px;
+    background-color: var(--color-rosa);
+    padding: 10px 15px;
+    border-radius: 5px;
+    display: inline-block;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
 /* Secciones de libros */
 
 .libros-grid {
@@ -190,4 +207,58 @@ footer {
 .footer-copyright {
     text-align: center;
     margin-top: 20px;
+}
+/*carrito*/
+.titulo-principal-carrito {
+    color: var(--color-azul);
+    margin-bottom: 20px;
+}
+
+.contenedor-carrito {
+    background-color: var(--color-blanco);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.carrito-vacio {
+    text-align: center;
+    color: var(--color-grisiscuro);
+}
+
+.carrito-productos {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.carrito-acciones {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.carrito-acciones-vaciar {
+    background-color: var(--color-grisclaro);
+    color: var(--color-grisiscuro);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.carrito-acciones-total {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.carrito-acciones-pagar {
+    background-color: var(--color-azul);
+    color: var(--color-blanco);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
 }
