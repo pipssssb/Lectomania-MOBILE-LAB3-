@@ -127,4 +127,64 @@ const todosLosLibros = [
 
 ];
 
+// function crearElementoLibro(libro) {
+//     const div = document.createElement('div');
+//     div.className = 'resultado-libro';
+//     div.innerHTML = `
+//         <img src="${libro.imagen}" alt="${libro.titulo}" style="width:121px;height:192px;">
+//         <div class="libro-detalles">
+//             <button class="producto-detalles-boton-agregar"
+//                 data-id="${libro.id}"
+//                 data-titulo="${libro.titulo}"
+//                 data-precio="${libro.precio}"
+//                 data-imagen="${libro.imagen}">
+//                 Agregar al carrito
+//             </button>
+//             <a href="producto-detalles.html?id=${libro.id}">
+//                 <p><span style="font-weight: bold">${libro.titulo}<br/>${libro.autor}<br/></span>$${libro.precio}</p>
+//             </a>
+//         </div>
+//     `;
+//     return div;
+// }
 
+// document.addEventListener('DOMContentLoaded', () => {
+//     const botonesAgregarCarrito = document.querySelectorAll('.producto-detalles-boton-agregar');
+    
+//     botonesAgregarCarrito.forEach(boton => {
+//         boton.addEventListener('click', () => {
+//             const producto = {
+//                 id: parseInt(boton.dataset.id),
+//                 titulo: boton.dataset.titulo,
+//                 precio: parseFloat(boton.dataset.precio),
+//                 imagen: boton.dataset.imagen
+//             };
+//             agregarAlCarrito(producto);
+//         });
+//     });
+// });
+
+const libro = libros.find(libro => libro.id === libroId);  // Usamos find() para buscar el libro por id
+
+if (libro) {
+    document.querySelector('.producto-detalles-imagen').src = libro.imagen;
+    document.querySelector('.producto-detalles-titulo h2').textContent = `${libro.titulo} - ${libro.autor}`;
+    document.querySelector('.producto-detalles-precio h2').textContent = `$${libro.precio}`;  // Añadimos el símbolo $
+    // Actualice aquí más detalles del libro en la página
+} else {
+    console.error('Libro no encontrado');  // Manejo de error si el libro no se encuentra
+}
+
+const botonAgregar = document.querySelector('.producto-detalles-boton-agregar');
+if (botonAgregar) {
+    botonAgregar.addEventListener('click', () => {
+        agregarAlCarrito({
+            id: libro.id,
+            titulo: libro.titulo,
+            precio: libro.precio,
+            imagen: libro.imagen
+        });
+        actualizarContadorCarrito();
+        alert('Producto agregado al carrito');
+    });
+}
