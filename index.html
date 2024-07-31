@@ -9,11 +9,27 @@
 </head>
 <body>
     <div class="wrapper">
-        <nav>
+        <!-- <nav>
             <div class="logo"><a href="index.html"><h1>Lectomania</h1></a></div>
             <button id="menu-toggle" class="menu-toggle"><i class="bi bi-list"></i></button>
         </nav>
 
+        <div id="mobile-menu" class="mobile-menu">
+            <div class="searchbox">
+                <input type="search" id="searchInput" placeholder="¿Que estás buscando?">
+                <button class="boton-buscador" onclick="buscarLibro()"><i class="bi bi-search"></i></button>
+            </div>
+            <ul>
+                <li><a href="carrito.html"><i class="bi bi-cart"></i> Carrito <span class="carrito-contador"></span></a></li>
+                <li><a href="#"><i class="bi bi-person-circle"></i>Perfil</a></li>
+            </ul>
+        </div> -->
+
+        <nav>
+            <div class="logo"><a href="index.html"><h1>Lectomania</h1></a></div>
+            <button id="menu-toggle" class="menu-toggle"><i class="bi bi-list"></i></button>
+        </nav>
+        
         <div id="mobile-menu" class="mobile-menu">
             <div class="searchbox">
                 <input type="search" id="searchInput" placeholder="¿Que estás buscando?">
@@ -61,6 +77,20 @@
                 </div>
             </div>
 
+            <div class="section juveniles">
+                <h2 class="seccion-titulo2">Juveniles</h2>
+                <div id="juveniles" class="libros-grid">
+                    <!-- Los libros se agregarán aquí dinámicamente -->
+                </div>
+            </div>
+        
+            <div class="section comics-novelas-graficas">
+                <h2 class="seccion-titulo3">Comics y novelas gráficas</h2>
+                <div id="comics-novelas-graficas" class="libros-grid">
+                    <!-- Los libros se agregarán aquí dinámicamente -->
+                </div>
+            </div>
+
         </main>
 
         <footer>
@@ -84,35 +114,50 @@
     </div>
 
     <script src="libros.js"></script>
+    <script src="script.js"></script>
+
+    <!-- CARGAR LIBROS -->
     
     <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Función para crear el elemento de libro
-        function crearElementoLibro(libro) {
-            return `
-                <div class="libro">
-                    <img src="${libro.imagen}" alt="${libro.titulo}" style="width:100%;max-width:121px;height:auto;">
-                    <div class="libro-detalles">
-                        <a href="producto-detalles.html?id=${libro.id}">
-                            <p><strong>${libro.titulo}</strong><br>${libro.autor}<br>$${libro.precio}</p>
-                        </a>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Función para crear el elemento de libro (sin cambios)
+            function crearElementoLibro(libro) {
+                return `
+                    <div class="libro">
+                        <img src="${libro.imagen}" alt="${libro.titulo}" style="width:100%;max-width:121px;height:auto;">
+                        <div class="libro-detalles">
+                            <a href="producto-detalles.html?id=${libro.id}">
+                                <p><strong>${libro.titulo}</strong><br>${libro.autor}<br>$${libro.precio}</p>
+                            </a>
+                        </div>
                     </div>
-                </div>
-            `;
-        }
+                `;
+            }
+        
+            // Cargar nuevos ingresos
+            const nuevosIngresos = document.getElementById('nuevos-ingresos');
+            todosLosLibros.slice(0, 4).forEach(libro => {
+                nuevosIngresos.innerHTML += crearElementoLibro(libro);
+            });
+        
+            // Cargar bestsellers
+            const bestsellers = document.getElementById('bestsellers');
+            todosLosLibros.slice(4, 8).forEach(libro => {
+                bestsellers.innerHTML += crearElementoLibro(libro);
+            });
     
-        // Cargar nuevos ingresos
-        const nuevosIngresos = document.getElementById('nuevos-ingresos');
-        todosLosLibros.slice(0, 4).forEach(libro => {
-            nuevosIngresos.innerHTML += crearElementoLibro(libro);
-        });
+            // Cargar juveniles
+            const juveniles = document.getElementById('juveniles');
+            todosLosLibros.slice(8, 12).forEach(libro => {
+                juveniles.innerHTML += crearElementoLibro(libro);
+            });
     
-        // Cargar bestsellers
-        const bestsellers = document.getElementById('bestsellers');
-        todosLosLibros.slice(4, 8).forEach(libro => {
-            bestsellers.innerHTML += crearElementoLibro(libro);
+            // Cargar comics y novelas gráficas
+            const comicsNovelas = document.getElementById('comics-novelas-graficas');
+            todosLosLibros.slice(12, 16).forEach(libro => {
+                comicsNovelas.innerHTML += crearElementoLibro(libro);
+            });
         });
-    });
     </script>
 
 </body>
